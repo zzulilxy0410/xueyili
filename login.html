@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>名侦探柯南 | 登录</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.rigister-form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+                var username = form.querySelector('input[type="text"]').value;
+                var password = form.querySelector('input[type="password"]').value;
+                var usernameRegex = /^[a-zA-Z0-9]{6,20}$/; // 用户名正则表达式
+                var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/; // 密码正则表达式
+
+                // 检查用户名和密码是否为空
+                if (username === '' || password === '') {
+                    alert('账号和密码不能为空！');
+                    return false;
+                }
+
+                // 检查用户名格式和长度
+                if (!usernameRegex.test(username)) {
+                    alert('账号格式不正确，请输入6到20位字母或数字。');
+                    return false;
+                }
+
+                // 检查密码格式和长度
+                if (!passwordRegex.test(password)) {
+                    alert('密码格式不正确，密码至少8位，且包含至少一个数字和一个字母。');
+                    return false;
+                }
+
+                // 所有检查通过后，跳转到首页
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="bg-box">
+        <div class="top">
+            <ul class="loginbar clearboth container">
+                <li><a href="index.html">名探偵<span>コナン</span></a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="rigister.html">注册</a></li>
+                <li><a href="login.html">登录</a></li>
+            </ul>
+        </div>
+        <form action="" class="rigister-form">
+            <h2>登录</h2>
+            <div class="account-bar"><label for="">账号：</label><input type="text" placeholder="请输入你的账号"></div>
+            <div class="account-bar"><label for="">密码：</label><input type="password" placeholder="请输入你的密码"></div>
+            <div class="submit-bar"><input type="submit" value="提交"></div>
+        </form>
+    </div>
+</body>
+
+</html>

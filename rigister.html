@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>名侦探柯南 | 注册</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.rigister-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+
+                var email = document.querySelector('input[type="email"]').value;
+                var username = document.querySelector('input[type="text"]').value;
+                var password = document.querySelector('input[type="password"]:first-of-type').value;
+                var confirmPassword = document.querySelector('input[type="password"]:last-of-type').value;
+
+                // 正则表达式验证
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var usernameRegex = /^[a-zA-Z0-9]{6,20}$/;
+                var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/;
+
+                // 验证邮箱
+                if (!emailRegex.test(email)) {
+                    alert('邮箱格式不正确，请重新输入。');
+                    return false;
+                }
+
+                // 验证用户名
+                if (!usernameRegex.test(username)) {
+                    alert('用户名格式不正确，请输入6到20位字母或数字。');
+                    return false;
+                }
+
+                // 验证密码
+                if (!passwordRegex.test(password)) {
+                    alert('密码格式不正确，密码至少8位，且包含至少一个数字和一个字母。');
+                    return false;
+                }
+
+                // 验证确认密码
+                if (password !== confirmPassword) {
+                    alert('两次输入的密码不一致，请重新输入。');
+                    return false;
+                }
+
+                // 所有验证通过，跳转到登录页面
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="bg-box">
+        <div class="top">
+            <ul class="loginbar clearboth container">
+                <li><a href="index.html">名探偵<span>コナン</span></a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="register.html">注册</a></li> <!-- 确保链接是正确的 -->
+                <li><a href="login.html">登录</a></li>
+            </ul>
+        </div>
+        <form action="" class="rigister-form">
+            <h2>注册</h2>
+            <div class="account-bar"><label for="">邮箱：</label><input type="email" placeholder="请输入你的邮箱"></div>
+            <div class="account-bar"><label for="">账号：</label><input type="text" placeholder="请输入你的账号"></div>
+            <div class="account-bar"><label for="">密码：</label><input type="password" placeholder="请输入你的密码"></div>
+            <div class="account-bar"><label for="">确认密码：</label><input type="password" placeholder="请再次输入你的密码"></div>
+            <div class="submit-bar"><input type="reset" value="重置"><input type="submit" value="提交"></div>
+        </form>
+    </div>
+</body>
+
+</html>
